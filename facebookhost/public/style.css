@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+section {
+  width: 100%;
+  color: white;
+  display: flex;
+  padding: 30px;
+}
+.container-for-all {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  border-radius: 20px;
+  padding: 20px;
+ 
+   box-shadow: 0px 0px 4px 1px rgba(89, 59, 195, 0.3);
+
+}
+.formContainer {
+  width: 50%;
+  /* max-width: 400px; */
+  height: auto;
+  padding: 10px;
+  margin-top: 20px;
+}
+input {
+  padding: 5px;
+  line-height: 24px;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid grey;
+  width: 100%;
+  border-radius: 4px;
+}
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.center-btn {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  background-color: navy;
+  color: white;
+  padding: 10px 140px 10px 140px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.auth-container-buttons {
+    text-align: center;
+}
+.google-btn button {
+      background-color: #a7a4a4;
+       box-shadow: 0px 0px 4px 1px rgba(200, 197, 211, 0.1);
+
+  }
+  .email-btn button{
+    background-color: #329C82;
+     box-shadow: 0px 0px 4px 1px rgba(89, 59, 195, 0.1);
+
+  }
+  .github-btn button{
+    background-color: #9F071C;
+     box-shadow: 0px 0px 4px 1px rgba(89, 59, 195, 0.1);
+
+  }
+.auth-container-buttons button:hover {
+      background: #A3AEBA;
+  }
+  .auth-container-buttons button {
+    color: white;
+    padding: 10px 100px 10px 100px;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    margin: 10px auto; 
+  }
+.imageContainer {
+  width: 50%;
+  margin-top: 20px;
+}
+.imageContainer, img{
+    width: 400px;
+}
+@media (max-width: 846px) {
+  .container-for-all {
+    flex-direction: column;
+  }
+  .formContainer{
+    width: 100%;
+  }
+  .btn{
+    padding: 10px 90px 10px 90px;
+}
+.auth-container-buttons button{
+      padding: 10px 50px 10px 50px;
+
+  }
+  .imageContainer {
+    width: 300px;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 477px) 
+{
+    .imageContainer, img{
+        max-width: 300px;
+    }
+}

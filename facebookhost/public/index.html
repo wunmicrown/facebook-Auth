@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="facebookContainer">
+    <div class="container-for-all ">
+      <div class="formContainer card">
+        <form onsubmit="facebSignin(event)">
+          <div id="successMessage" style="display: none; color: green;">Sign-in successful!</div>
+          <div id="show"></div>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required>
+          <div class="center-btn">
+            <button class="btn">SignIn</button>
+          </div>
+        </form>
+        <div class="auth-container-buttons">
+          <div class="google-btn"><span></span><button onclick="googleSignIn()">Sign in with Google</button></div>
+          <div class="email-btn"> <button onclick="emailSignIn()">Sign in with Email</button></div>
+          <div class="github-btn"><button onclick="githubSingIn()">Sign in with Github</button></div>
+        </div>
+      </div>
+      <div class="imageContainer"><img src="Privacy policy.gif" alt="animateImage"></div>
+    </div>
+  </section>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, GithubAuthProvider, isSignInWithEmailLink, signInWithEmailLink, signInWithPopup, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6QfuIgUVK9yM7dgQ3E-uX2a5gy9wL2Y8",
+      authDomain: "facebooksigninass.firebaseapp.com",
+      projectId: "facebooksigninass",
+      storageBucket: "facebooksigninass.appspot.com",
+      messagingSenderId: "742328119628",
+      appId: "1:742328119628:web:40f72bae747d0d8b9d1fe9"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+    const providerr = new GithubAuthProvider();
+
+    const googleSignIn = () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // const user =result.user;
+          // console.log(user);
+          if (result) {
+            sendEmailVerification(auth.currentUser)
+              .then(() => {
+                console.log(" Verification Email sent");
+              });
+            window.location.href = "dashboard.html";
+
+          } else {
+            window.location.href = "index.html";
+
+          }
+        })
+        .catch((erro) => {
+          console.log(Error);
+        })
+    }
+    const emailSignIn =()=>{
+      if (isSignInWithEmailLink(auth, window.location.href)) {
+  let email = window.localStorage.getItem('emailForSignIn');
+  if (!email) {
+    email = window.prompt('Please provide your email for confirmation');
+  }
+  signInWithEmailLink(auth, email, window.location.href)
+    .then((result) => {
+      
+      window.localStorage.removeItem('emailForSignIn');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+    }
+    const githubSingIn=()=>{
+      alert("working")
+      signInWithPopup(auth,providerr)
+        .then((result) => {
+          // const user =result.user;
+          // console.log(user);
+          if (result) {
+            sendEmailVerification(auth.currentUser)
+              .then(() => {
+                console.log(" Verification Email sent");
+              });
+            // window.location.href = "dashboard.html";
+
+          } else {
+            // window.location.href = "index.html";
+
+          }
+        })
+        .catch(((erro) => {
+          console.log(Error);
+        }))
+    }
+    window.googleSignIn = googleSignIn;
+    window.emailSignIn = emailSignIn;
+    window.githubSingIn=githubSingIn;
+  </script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+</html>
